@@ -1,0 +1,2706 @@
+# <#>TypeScript<> SpeedSheet
+<b>Find it faster.<>
+
+This is an interactive <b>TypeScript<> cheat sheet. Covers the core TypeScript programming language. Use the search to instantly get answers.
+
+
+
+# Online Documents
+@
+@ online-docs-only, docs-only
+
+
+### Official Site
+<l>https://www.typescriptlang.org/<>
+
+
+### Official Documents
+<l>https://www.typescriptlang.org/docs/<>
+
+
+### Official Documents - Compiler Options
+<l>https://www.typescriptlang.org/docs/handbook/compiler-options.html<>
+@
+@ command line, cli
+
+
+### Official Download Instructions
+<l>https://www.typescriptlang.org/download/<>
+@
+@ install
+
+
+### Oficial Tools - Type Search
+<l>https://www.typescriptlang.org/dt/search<>
+
+Use to find type declaration files for many TypeScript libraries.
+
+
+
+# Commands
+@
+@ command-only, commands-noly, cli, cli-only
+
+
+
+## TypeScript Commands
+
+
+### TypeScript - Install - With NPM
+
+<cb>npm --location=global install typescript<>
+
+<cb>npm -g install typescript<>
+
+Requires Node.js and npm.
+@
+@ nodejs, node.js
+@ install-only, installing-only
+
+
+### TypeScript - TypeScript Version
+
+<cb>tsc -v<>
+@
+@ -v --version
+
+
+## Project Commands
+
+
+### Project - Compile
+
+<cb>tsc
+
+npx tsc<>
+@
+@ tsc
+
+
+
+### Project - Create
+
+Create Project Directory.
+
+From Directory:
+
+<cb>npm install typescript --save-dev
+
+npx tsc --init<>
+
+
+Installs TypeScript locally.
+Creates tsconfig.js file.
+@
+@ install npm install typescript --save-dev
+@ npx tsc --init
+
+
+
+### Project - Create Config File
+
+<cb>tsc --init<>
+
+Creates a default tsconfig.js file.
+@
+@ tsconfig.js
+
+
+
+### Project - Install Library Type Declaration File
+
+<cb>npm install \@types/<v>library_name<> --save-dev<>
+
+Typically Installed To:
+
+<cb>project/node_modules/@types/<v>library_name<>/<>
+@
+@ \@types, npm install
+
+
+
+## File Commands
+
+
+### File - Compile
+
+<cb>tsc <v>file_name<>.ts
+
+npx tsc <v>file_name<>.ts<>
+
+Compiles the file to javascript.
+@
+@ tsc
+
+
+
+### File - Run
+
+<cb>node <v>file_name<>.js<>
+
+Runs the compiled javascript file.
+@
+@ node
+
+
+
+# Language Fundamentals
+@
+@ language-fundamentals-only, fundamentals-only
+
+
+### Configuration File
+
+<cb>tsconfig.js<>
+@
+@ tsconfig.js
+
+
+
+### Code Blocks
+
+<cb>{
+	<v>...<>
+}<>
+
+
+
+### Comments
+
+<cb><#>// Comment<><>
+
+
+
+### Comments - Multiline
+
+<cb><#>/*
+	Multiline Comments
+*/<><>
+
+
+
+### Control Flow Type Analysis
+
+The compiler uses the application control flow to narrow variable types as strictly as possible.
+
+The compiler analyses the control flow of the program.
+It then maps variables with unknown (union or any) types through the flow.
+If it can infer the type (e.g. when <c>typeof<> is used), it will restrict the variable to that type inside that part of the code.
+
+
+<cb>let <v>item1<>: string | number;
+<v>item1<> = 42;
+
+if (typeof (<v>item1<>) === 'string') {
+    <#> // item1 type is restricted to string.<>
+    <v>...<>
+}
+else {
+    <#> // item1 type is restricted to number.<>
+    <v>...<>
+}<>
+@
+@ narrowing
+
+
+
+### DocString
+
+<cb><#>/**
+ * This is a doc string.
+ */<>
+function <v>someFunction1<>() {
+	<v>...<>
+}<>
+@
+@ docstrings
+@ documentation, doc strings, doc comments
+
+
+
+### Multiline
+
+<cb>\\<>
+
+<cb><v>...<> \\
+<v>...<><>
+
+End with backslash <c>\\<>.
+
+
+
+### Escaping
+
+Syntax		\\<v>x<>			Escape using backslash.
+
+Quote (")	\\"
+
+
+
+### Indexes
+
+0 Based.
+
+Indexes are 0 based.
+To get the first element, reference element 0.
+
+
+Example:
+
+<cb><v>first<> = <v>array_1<>[0]<>
+@
+@ indexing, base, zero, one
+
+
+
+### Identifiers
+
+<cb>( $ | _ | <v>unicode<> )*<>
+
+Javascript gives a wide latitude for what is acceptable as an identifer name.
+
+Illegal - Most Puctuation:
+
+<cb>" ' - : +<>
+@
+@ Javascript names, variable names, module names, class names
+@ Rules, Valid, allowable, allowed, Name, Correct
+
+
+
+### Names
+
+Any letter unicode character
+(uppercase letter (LU), lowercase letter (LI), titlecase letter (Lt), modifier letter (lm), other letter (Lo))
+
+Any number unicode character
+(letter number (NI))
+
+<c>$<>, <c>_<>
+(Dollar sign, underscore)
+
+
+
+### Command Separator
+
+<cb>;<>
+
+Optional but should use because of clarity, edge cases.
+
+
+
+### Command Terminator
+
+Not Required but use '<c>;<>' command separator for clarity.
+
+
+
+### Operator Overloading
+
+Strictly Speaking Not Supported.
+
+But... functions can send in any number of parameters to a function. The function can test the parameters internally to see if they have a value.
+
+
+
+
+### Function Overloading
+
+Not allowed. But parameters can simply be left off when calling.
+
+
+
+### Precedence
+
+<l>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence<>
+
+
+
+### Structural Type System (Duck Typing)
+
+As long as the object structure matches the class or interface, TypeScript considers the object to be compatible.
+
+<cb>interface <v>Employee<> {
+	<v>name<>: string;
+	<v>title<>: string;
+}
+
+let <v>user1<> = {
+	<v>name<>: 'Joe',
+	<v>title<>: 'CEO',
+    <v>department<>: 'Executive Branch'
+};
+
+<#>// OK:<>
+
+let <c>firstEmployee<>: <v>Employee<> = <v>user1<>;<>
+
+Explicit declaration not required.
+
+<c>user1<> is an <c>Employee<> as it has all the required properties of <c>Employee<>.
+It does not need to be instantiated from a class implementing <c>Employee<>.
+@
+@ duck typing
+
+
+
+### Write to Console
+
+<cb>console.log("<v>...<>");<>
+
+
+
+# Configuration
+@
+@ tsconfig.json
+
+
+## Configuration File
+
+
+### Configuration File - Name
+
+<cb>tsconfig.json<>
+
+
+
+### Configuration File - Minimalist
+
+<cb>{}<>
+@
+@ minimum, minimalist
+
+
+
+### Configuration File - Simple
+
+<cb>{
+    "compilerOptions": {
+        "target": "<v>es6<>",
+        "noUnusedLocals": true,
+        "outFile": "<v>app<>.js",
+    },
+    "files": [
+        "<v>app<>.ts"
+    ]
+}<>
+@
+@ sample
+
+
+
+## Configuration Settings
+
+
+### Config Setting - Extend Parent Configuration File
+
+tsconfig.json:
+
+<cb>{
+    "extends": "<v>relative_path<>/<v>parent_tsconfig<>"
+}<>
+
+
+Uses the settings from a parent configuration file.
+
+Allows granular control over groups of TypeScript files.
+<c>'.json'<> is not required for the parent file. Leave it off.
+@
+@ reference, extends
+
+
+
+### Config Setting - Code - Enforce Strict Type Checks
+
+tsconfig.json:
+
+<cb>{
+    "compilerOptions": {
+        "strict": <v>true<>,
+    },
+}<>
+
+Command Line:
+
+<cb>tsc --strict<>
+
+Strictly eforces all type declarations and compliance.
+@
+@ compilerOptions, strict, --strict, checking
+
+
+
+### Config Setting - Code - Disallow Implicit Any Type
+
+tsconfig.json:
+
+<cb>{
+    "compilerOptions": {
+        "noImplicitAny": <v>true<>,
+    },
+}<>
+
+Command Line:
+
+<cb>tsc --noImplicitAny<>
+
+
+Enforces declaration of types.
+
+By default TypeScript would implicitly declare variables and functions as type <c>any<>.
+@
+@ compilerOptions, noImplicitAny, --noImplicitAny, no implicit any
+
+
+
+### Config Setting - Code - Disallow Nulls, Undefined
+
+tsconfig.json:
+
+<cb>{
+    "compilerOptions": {
+        "strictNullChecks": <v>true<>,
+    },
+}<>
+
+Command Line:
+
+<cb>tsc --strictNullChecks<>
+
+
+Enforces no <c>null<> or <c>undefined<> values.
+
+To allow <c>null<> or <c>undefined<>, explitly declare them in a union type.
+
+
+Explicit Declaration Example:
+
+<cb>let <v>item1<>: string | null;<>
+@
+@ compilerOptions, strictNullChecks, --strictNullChecks, strict, strict null checks
+
+
+
+### Config Setting - Compiler - Include Specific Files
+
+tsconfig.json:
+
+<cb>{
+    "files": [
+        "<v>filename1.ts<>",
+        "<v>filename2.ts<>"
+    ],
+}<>
+
+
+Explicitly declares the files to compile by name.
+@
+@ to, files
+
+
+
+### Config Setting - Compiler - Include Files
+
+tsconfig.json:
+
+<cb>{
+    "include": [
+        "<v>pattern<>",
+        "<v>pattern<>"
+    ],
+}<>
+
+
+Explicitly defines the files to be compiled.
+
+
+Example: 
+
+Include every file in this directory and below:
+
+<cb>{
+    "include": [
+        "./**/*"
+    ],
+}<>
+@
+@ to
+
+
+
+### Config Setting - Compiler - Exclude Files
+
+tsconfig.json:
+
+<cb>{
+    "exclude": [
+        "<v>pattern<>",
+        "<v>pattern<>"
+    ],
+}<>
+
+
+Explicitly defines the files to be compiled.
+
+
+Example: 
+
+Exclude every file in this directory and below:
+
+<cb>{
+    "exclude": [
+        "./**/*"
+    ],
+}<>
+@
+@ to
+
+
+
+### Config Setting - Compiler - Module Base Directory
+
+tsconfig.json:
+
+<cb>{
+	"compileOptions": {
+		"baseUrl": "<v>relative_path<>"
+	}
+}<>
+
+Tells TypeScript to search the baseurl path for modules.
+
+
+Example:
+
+<cb>{
+	"compileOptions": {
+		"baseUrl": "<v>./modules<>"
+	}
+}<>
+@
+@ compileoptions, baseurl
+
+
+
+### Config Setting - Compiler - Module Paths - Explicit Path
+
+tsconfig.json:
+
+<cb>{
+	"compileOptions": {
+		"paths": {
+			"<v>module1<>": ["<v>relative_path<>"],
+			"<v>module2<>": ["<v>relative_path<>"]
+		}
+	}
+}<>
+
+Tells TypeScript where to find individual modules.
+
+Paths are relative to the current path.
+@
+@ compileoptions, paths
+
+
+
+### Config Setting - Compiler - Module Paths - From Root
+
+tsconfig.json:
+
+<cb>{
+	"compileOptions": {
+		"rootDirs": {
+			<v>directory1<>",
+			<v>direcotry2<>"
+		}
+	}
+}<>
+
+Tells TypeScript what directories to search for modules.
+
+These directories and included modules will be combined into a single directory.
+Paths are relative to the project root path.
+@
+@ compileoptions, rootdirs, paths, search
+
+
+
+### Config Setting - Compiler - Module Target
+
+tsconfig.json:
+
+<cb>{
+	"compileOptions": {
+		"module": "<v>target<>"
+	}
+}<>
+
+
+Sets the target module import / export type.
+
+
+Target:
+
+<in-2><c>commonjs
+amd
+umd
+esm<>
+etc...<>
+@
+@ compileoptions, module, amd, umd, commonjs
+
+
+
+### Config Setting - Compiler - Module Resolution Type
+
+tsconfig.json:
+
+<cb>{
+	"compileOptions": {
+		"moduleResolution": "<v>type<>"
+	}
+}<>
+
+Type:
+
+<in-2><c>Classic
+Node<><>
+@
+@ compileoptions, moduleresolution, resolution, classic, node
+
+
+
+### Config Setting - Debug - Module Resolution
+
+tsconfig.json:
+
+<cb>{
+	"compileOptions": {
+		"traceResolution": true
+	}
+}<>
+@
+@ compileoptions, traceresolution, log trace
+
+
+
+### Config Setting - Output File
+
+tsconfig.json:
+
+<cb>{
+	"compileOptions": {
+		"outFile": <v>relative_path<>/<v>target_filename.js<>
+	}
+}<>
+
+Compiles all code to a single file.
+
+
+
+### Config Setting - Compiler - Remove Comments
+
+tsconfig.json:
+
+<cb>{
+    "compilerOptions": {
+        "removeComments": <v>true<>,
+    },
+}<>
+
+Command Line:
+
+<cb>tsc --removeComments<>
+
+
+Removes comments from the compiled JavaScript.
+
+Comments are included by default.
+@
+@ compilerOptions, removeComments, --removeComments
+
+
+
+### Config Setting - Compiler - Watch Files / Recompile
+
+tsconfig.js:
+
+<cb>{
+	"compilerOptions": {
+		"watch": true
+	}
+}<>
+
+Command Line:
+
+<cb>tsc --wawch<>
+
+
+Incrementally compiles code as typescript files are updated.
+
+The compiler will continuously check for changes.
+Any file that changes will be recompiled.
+@
+@ watch, compilerOptions, --watch
+@ autocompile, watch for, on the fly, at runtime
+
+
+
+# Conventions
+@
+@ Names, naming-conventions-only, conventions-only
+
+
+### Convention - Variable Name
+
+<cb><v>variableName1<> = <v>...<>;<>
+
+Use camelCase.
+
+
+
+### Convention - Class Name
+
+<cb>class <v>ClassName<> {<v>...<><>
+
+Use TitleCase.
+
+
+
+### Convention - Enum Name
+
+<cb>enum <v>EnumName<> {<v>...<><>
+
+Use TitleCase.
+
+
+
+### Convention - Function Name
+
+<cb>function <v>functionName<>() <v>...<><>
+
+Use camelCase.
+
+
+
+### Convention - Constructor Function Name
+
+<cb>function <v>ConstructorFunctionName<>()<v>...<><>
+
+Use TiteCase.
+
+
+
+### Convention - Private Functions, Methods, Properties
+
+There is no official convention.
+
+I recommend add a leading underscore to the name '_'.
+
+<cb>function _<v>privateFunction1<>()<v>...<><>
+
+
+
+# Operators
+@
+@ operators-only, operator-only
+
+
+### Arithmetic Operators
+
+<in-2><table><col><c><v>a<> + <v>b<>		<><>
+<col><c><v>a<> - <v>b<><><>
+<col><c><v>a<> * <v>b<><><>
+<col><c><v>a<> / <v>b<><><>
+<col> <>
+<col><c><v>a<> % <v>b<><><><col>Modulo ( 7 % 3 = 1)<>
+<col><c><v>a<> ** <v>b<><><><col>To The Power of<>
+<col> <>
+<col><c><v>a<>++<><><><col>Increment<>
+<col><c><v>a<>--<><><><col>Decrement<><><>
+@
+@ +, -, /, *, %, **, ++, --
+@ power, modulo, modulus, plus, minus, divide, multiply, increment, decrement
+
+
+
+### Arithmetic Assignment Operators
+
+Assign:
+
+<in-2><table><col><c><v>a<> = <v>b<><><><><>
+
+Calculate and update variable:
+
+<in-2><table><col><c><v>a<> += <v>b<>		<><>
+<col><c><v>a<> -= <v>b<><><>
+<col><c><v>a<> *= <v>b<><><>
+<col><c><v>a<> /= <v>b<><><>
+<col> <>
+<col><c><v>a<> %= <v>b<><><><col>Modulo<>
+<col><c><v>a<> **= <v>b<><><><col>To The Power of<><><>
+@
+@ =, +=, -=, *=, /=, %=, **=, =+, =-, =*, =/, =%, =**
+
+
+
+### Arithmetic Operators - Increment
+
+<in-2><c>++<v>a<><>
+<c><v>a<>++<><>
+@
+@ unary, ++
+
+
+
+### Arithmetic Operators - Decrement
+
+<in-2><c>--<v>a<><>
+<c><v>a<>--<><>
+@
+@ unary, --
+
+
+
+### Assertion Operator
+
+<in-2><table><col><c><v>a<>!<>		<><col>Non-Null Assertion Operator<super><#>1<><><><><>
+
+
+1 - Asserts that the value is never nullish (null or undefined).
+@
+@ !
+
+
+### Boolean Operators
+
+<in-2><table><col><c>!<v>a<><>		<><col>Not<>
+<col> <>
+<col><c><v>a<> && <v>b<><><><col>And<super><#>1<><><>
+<col><c><v>a<> || <v>b<><><><col>Or<><><>
+
+
+
+1 - Tests for trueness. If <v>a<> is null, false.
+
+<!>Get a concrete example of this.<>
+@
+@ &&, ||, !
+@ And, Or, Not
+
+
+
+### Comparison Operators
+
+Abstract Equals:
+
+<in-2><c><v>a<> == <v>b<><>
+<c><v>a<> != <v>b<><><>
+
+Strict Equals:
+
+<in-2><c><v>a<> === <v>b<><>
+<c><v>a<> !== <v>b<><><>
+
+Greater or Less Than:
+
+<in-2><c><v>a<> \< <v>b<><>
+<c><v>a<> > <v>b<><>
+<c><v>a<> \<= <v>b<><>
+<c><v>a<> >= <v>b<><><>
+@
+@ \<, \<=, >, >=, compare
+
+
+
+### Comparison Operators - Equals / Abstract Equality
+
+<in-2><c><v>a<> == <v>b<><>
+<c><v>a<> != <v>b<><><>
+
+
+Compares the value of two items.
+
+Will convert the types to one type and then compares.
+
+
+<card><table><col>⚠️<><col>Not recommended.
+
+Use ===, !== instead.<><><>
+@
+@ ==, !=, double, compare
+
+
+
+### Comparison Operators - Equals / Strict Equality
+
+<in-2><c><v>a<> === <v>b<><>
+<c><v>a<> !== <v>b<><><>
+
+Performs a strict comparison.
+No type conversion performed.
+Preferred over <c>==<>.
+@
+@ ===, !==, triple, compare
+
+
+
+### Operators - Return Value
+
+<cb>= <v>boolean1<> && <v>value<><>
+
+
+if <v>boolean1<> is true, returns <v>value<>.
+@
+@ &&
+
+
+
+### Bitwise Operators
+
+<in-2><table><col><c><v>a<> \<\<= <v>shiftCount<><><><col>Shift Bits Left<>
+<col><c><v>a<> >>= <v>shiftCount<><><><col>Shif Bits Right<><><>
+@
+@ \<\<=, >>=
+@ shift bits left, right
+
+
+
+### Object Operators
+
+<in-2><table><col><c><v>a<>.<v>method1<>()<><><col>Chain Operator<>
+<col><c><v>a<>!.<v>method1<>()<><><col>Non-Null Assertion Operator<super><#>1<><><>
+<col><c><v>a<>?.<v>method1<>()<><><col>Optional Chain Operator<super><#>2<><><><><>
+
+1 - Asserts that the value before <c>!.<> is not nullish (<c>null<> or <c>undefined<>).
+
+2 - Chains operations together unless a nullish value is returned (<c>null<> or <c>undefined<>). Then it returns <c>undefined<>.
+@
+@ ., ?., !., dot, optional chain, non-null assertion
+
+
+
+# Variables
+@
+@ var-only, vars-only, variable-only, variables-only
+
+
+### Type Annotations
+
+<cb>let <v>item1<>: string = 'Item value.';<>
+
+Form:
+
+<cb>let <v>variable<>: <v>type<>;
+let <v>variable<>: <v>type<> = <v>value<>;<>
+
+
+Defines the variable type.
+
+The compiler will constrain this variable to be a string only.
+@
+@ :, colon
+
+
+
+### Type Inferencing
+
+<cb>let <v>name<> = '<v>Joe<>';<>
+
+Form:
+
+<cb>let <v>variable<> = <v>value<>;<>
+
+
+TypeScript can infer types of local variables.
+
+TypeScript uses the value assigned to the variable to infer the type.
+
+
+Examples:
+
+<cb>let <v>user<> = {
+	<v>id<>: 1,
+	<v>name<>: '<v>Joe<>'
+};<>
+@
+@ inference
+
+
+
+### Type Assertion
+
+<cb>= \<<v>type<>><v>item1<><>
+
+<cb>= <v>item1<> as <v>type<><>
+
+Asserts the type of the variable.
+
+Tells the TypeScript compiler the actual type.
+No actual casting happens.
+Both forms above are equivalent.
+@
+@ asserting, \<>, \< >
+
+
+
+### Variable Type - Get
+
+<cb>= typeof(<v>value1<>)<>
+
+<cb>= typeof <v>value1<><>
+
+
+Returns: <c>string<>
+
+
+Both forms above are equivalent.
+
+
+Example:
+
+<cb>if (typeof(<v>value<>) === "number") {
+	console.log("This is a number.");
+}<>
+@
+@ Typeof, type of, To String
+@ instanceof, isinstance, type is
+
+
+
+# Data Types
+@
+@ data-type-only, data-types-only
+
+
+### Standard Types
+
+<card><table><col><c>any<>	<><col>				<><col>Allows Any Type<>
+<col><c>never<><><col><><col>Defines Something That Will Never Return a Value<>
+<col><c>null<><><col><><col>Null Value<>
+<col><c>undefined<><><col><><col>A Declared But Unassigned Variable<>
+<col><c>unknown<><><col><><col>Similar to Any But Forces a Type Check Before Use<>
+<col><c>void<><><col><><col>For Functions That Return <c>undefined<>
+or Don't Have a Return<><><>
+
+Primitives:
+
+<card><table><col><c>boolean<><><col><c>true | false	<><><col>True or False<>
+<col> <>
+<col><c>bigint<><><col><c><v>42<>n<><><col>Integer of Arbitrary Precision<>
+<col> <>
+<col><c>number<><><col><c><v>42<>
+<v>42.1<>
+NaN
+Infinity<><><col>Floating Point Number<>
+<col> <>
+<col><c>string<><><col><c>'<v>A String<>'<><><col>Immutable String<>
+<col><><col><c>"<v>A String<>"<><>
+<col> <>
+<col><c>symbol<><><col><><col>Immutable Unique Value (atom) / Object Key<><><>
+
+<card><table><col><c>Object<>		<><col>		<><col>A Value in Memory Referenced By an Identifier<><><>
+@
+@ Standard, std
+
+
+
+### Additional Types
+
+<card><table><col><c>Date<>			<><col>A Value in Memory Referenced By an Identifier<><><>
+
+
+
+### Collection Types
+
+<card><table><col>Array<><col><c>[]<><><col>Ordered List of Items<>
+<col>Associative Array<><col><c>{}<><><col>Dictionary of Key, Value Pairs<>
+<col>Map<><col><c>Map()<><><col>Ordered Dictionary of Key, Value Pairs<>
+<col>Set<><col><c>Set()<><><col>Set of Items<>
+<col>Tuple<><col><c>[]<><><col>Ordered List of Mixed Types<><><>
+
+
+
+### User Defined Types
+
+<c>enum<>
+<c>class<>
+<c>interface<>
+
+
+
+### Union Types
+
+<cb>let <v>identity<>: number | string | undefined;<>
+
+Form:
+
+<cb>let <v>variable<>: <v>type<> | <v>type<> | <v>type<> <v>...<>;<>
+
+
+Defines a variable that can have two or more types.
+
+Separate allowed types with the union symbol (<c>|<>).
+@
+@ |, pipe, vertical bar, Algebraic, sum, adt
+
+
+
+### Union Types - Strings
+
+<cb>let <v>string1<> = '<v>value-one<>' | '<v>value-two<>' | '<v>value-three<>';
+
+Limits the allowable values in <v>string1<>.
+@
+@ allowable values
+
+
+
+# Any
+
+<cb>let <v>any_1<>: any = "any value";<>
+
+Type:
+
+<cb>any<>
+
+Allows any type.
+@
+@ any-only, type
+
+
+
+# Never
+
+Type:
+
+<cb>never<>
+
+Defines something that will never return a value.
+@
+@ never-only, type
+
+
+
+# Null
+
+<cb>let <v>null_1<>: null = null;<>
+
+Type:
+
+<cb>null<>
+
+Null Value
+@
+@ null-only, type
+
+
+
+# Undefined
+
+<cb>let <v>undefined_1<>: undefined = undefined;<>
+
+Type:
+
+<cb>undefined<>
+
+A declared but unassigned variable.
+@
+@ undefined-only, type
+
+
+
+# Unknown
+
+<cb>let <v>unknown_1<>: unknown = unknown;<>
+
+Type:
+
+<cb>unknown<>
+
+Similar to any but forces a type check before use.
+@
+@ unknown-only, type
+
+
+
+# Void
+
+<cb>function <v>function_1<>(): void {
+	<v>...<>
+}<>
+
+Type:
+
+<cb>void<>
+
+For functions that return undefined or don't have a return.
+@
+@ void-only, type
+
+
+
+# Any vs Unknown
+
+Any:
+
+<*>Allows Any Type
+No Restrictions on Use<>
+
+Unknown:
+
+<*>Allows Any Type
+Requires a Type Check Before Use
+Con only be assigned to Any | Unknown (without checking and casting)<>
+@
+@ any-only
+
+
+
+# Boolean
+
+<cb>let <v>boolean1<>: boolean = true;<>
+
+Type:
+
+<cb>boolean<>
+
+Values:
+
+<cb>true | false<>
+@
+@ boolean-only, booleans-only, bool-only, bools-only, true, false
+
+
+
+# Big Int
+
+<cb>let <v>bigInt1<>: bigint = 42n;<>
+
+Type:
+
+<cb>bigint<>
+
+Must end in <c>n<>.
+@
+@ bigint-only, bigint-only, big-int-only, big-int-only
+
+
+
+# Number
+
+<cb>let <v>number1<>: number = 42;<>
+
+<cb>= <v>42<>
+= <v>42.1<>
+= NaN
+= Infinity<>
+
+Type:
+
+<cb>number<>
+
+
+@
+@ number-only, number-only
+
+
+
+# String
+
+<cb>let <v>a_string<>: string = 'This is a string.';<>
+
+Type:
+
+<cb>string<>
+@
+@ string-only, stings-only, '', ""
+
+
+
+# Array
+
+<cb>let <v>array1<>: <v>type<>[];<>
+
+<cb>let <v>array1<>: <v>Array<>\<<v>type<>>;<>
+
+<cb>let <v>array1<>: <v>type<>[] = [<v>value1<>, <v>value2<>, <v>...<>];<>
+@
+@ arrays, lists, []
+@ array-only, arrays-only
+
+
+
+# Set
+
+<cb>let <v>set1<>: <v>Set<>\<<v>type<>>;<>
+
+<cb>let <v>set1<>: <v>Set<>\<<v>type<>> = new Set([<v>value1<>, <v>value2<>, <v>...<>]);<>
+@
+@ sets
+@ set-only, sets-only
+
+
+
+# Tuple
+
+<cb>let <v>tuple1<>: [<v>Type1<>, <v>Type2<>, <v>...<>] = [<v>value1<>, <v>value2<>, <v>...<>];<>
+
+
+Using Type Inferencing:
+
+<cb>let tuple1 = [<v>value1<>, <v>value2<>, <v>...<>];<>
+
+Example
+
+
+<cb>let <v>nameValue<>: [string, number] = ["nv string", 2];<>
+@
+@ tuples
+@ tuple-only, tuples-only
+
+
+
+# Enum
+
+Define:
+
+<cb>enum <v>EnumName<> {<v>Enum1<>, <v>Enum2<>, <v>...<>}<>
+
+<cb>enum <v>EnumName<> {<v>Enum1<> = <v>value1<>, <v>Enum2<> = <v>value2<>, <v>...<>}<>
+
+Access:
+
+<cb>= <v>EnumName<>.<v>Enum1<><>
+
+Example:
+
+<cb>enum <v>Color<> {<v>Red<> = 1, <v>Green<> = 2, <v>Blue<> = 3};
+
+let <v>color1<> = <v>Color<>.<v>Blue<>;<><>
+
+
+
+# Functions
+@
+@ function-only, functions-only, func-only, funcs-only
+
+
+## Function Annotations
+@
+@ type, declaration
+
+
+### Function Annotations - Basics
+
+<cb>function <v>function1<>(<v>item1<>: <v>type<>): <v>returnType<> {
+
+	return <v>...<>;
+}<>
+
+<cb>function <v>function1<>(): void {
+	<#>// No Return<>
+}<>
+
+
+Example:
+
+<cb>function <v>square<>(<v>value1<>: number): number {
+
+	return <v>value1<> ** 2;
+}<>
+
+
+
+### Function Annotations - Parameter Type
+
+<cb>function <v>function1<>(<v>item1<>: <v>type<>, <v>item2<>: <v>type<>)<v>...<> {
+
+}<>
+
+
+Example:
+
+<cb>function <v>add<>(<v>value1<>: number, <v>value2<>: number): number {
+
+	return <v>value1<> + <v>value2<>;
+}<>
+@
+@ required
+
+
+
+### Function Annotations - Parameter Type, Default
+
+<cb>function <v>function1<>(<v>item1<>: <v>type<> = <v>default<>)<v>...<> {
+
+}<>
+
+
+Defines the default value for a parameter that is either ommitted by the caller or <c>undefined<>.
+
+
+Example:
+
+<cb>function <v>hello<>(<v>name<>: string = '<v>World<>'): void {
+
+	console.log(`Hello ${<v>name<>}`);
+}
+
+<v>hello<>();<>
+@
+@ initialized
+
+
+
+### Function Annotations - Parameter Type, Optional
+
+<cb>function <v>function1<>(<v>item1<>: <v>type<>, <v>item2<>?: <v>type<>)... {
+
+}<>
+
+
+Optional parameters are denoted with <c>?:<>.
+
+Optional parameters must come after all required parameters.
+Optional parameters can be ommitted by the caller.
+Optional parameters may also have the value <c>undefined<>.
+
+Example:
+
+<cb>function <v>add<>(<v>value1<>: number, <v>value2<>?: number): number {
+
+	return <v>value1<> + <v>value2<>;
+}<>
+@
+@ ?:, undefined
+
+
+
+### Function Annotations - Return Type
+
+<cb>function <v>function1<>(): <v>returnType<> {
+
+}<>
+
+
+Example:
+
+<cb>function <v>pi<>(): number {
+	return 3.141593;
+}<>
+
+
+
+### Function Annotations - No Return Type
+
+<cb>function <v>function1<>(): void {
+
+}<>
+
+
+Use <v>void<> to denote a function that does not return a value.
+@
+@ void
+
+
+
+## Arrow Function Annotations
+@
+@ type, declaration, fat, double, =>
+
+
+### Arrow Function Annotations - Basics
+
+<cb>const <v>function1<> = (<v>param1<>: <v>type<>): <v>returnType<> => <v>...<>;<>
+
+
+Example:
+
+<cb>const <v>add<> = (<v>value1<>: number, <v>value2<>: number): number => <v>value1<> + <v>value2<>;
+
+console.log(<v>add<>(1, 2));<>
+
+
+
+### Arrow Function Annotations - Parameter Type
+
+<cb>const <v>function1<> = (<v>param1<>: <v>type<>, <v>param2<>: <v>type<>, <v>...<>) => <v>...<>;<>
+
+
+TypeScript always requires parameters to be enclosed in parentheses ('(', ')').
+
+
+Example:
+
+<cb>const <v>add<> = (<v>value1<>: number, <v>value2<>: number) => <v>value1<> + <v>value2<>;
+
+console.log(<v>add<>(1, 2));<>
+
+
+
+### Arrow Function Annotations - Return Type
+
+<cb>const <v>function1<> = (): <v>type<> => <v>...<>;<>
+
+
+Example:
+
+<cb>const <v>pi<> = (): number => 3.141593;
+
+console.log(<v>pi<>());<>
+
+
+
+### Arrow Function Annotations - Return Type, Inferred
+
+<cb>const <v>function1<> = () => <v>...<>;<>
+
+
+TypeScript can infer the returned type of a function.
+
+The return type annotation is therefore optional.
+
+
+Example:
+
+<cb>const <v>pi<> = () => 3.141593;
+
+const <v>number1<>: number = <v>pi<>();
+console.log(<v>number1<>());<>
+@
+@ inference, inferencing
+
+
+
+## Function Variable Annotations
+
+
+### Function Variable Annotations - Basics
+
+<cb>let <v>function1<>: (<v>param1<>: <v>type<>) => <v>returnType<>;<>
+@
+@ =>
+
+
+
+# Interfaces
+
+
+
+### Interface - Basics
+
+<cb>interface <v>Person<> {
+	<v>id<>: number;
+	<v>name<>: string;
+	<v>sendMessage<>(<v>message<>: string) => void;
+}<>
+
+<cb>interface <v>User<> extends <v>Person<> {
+	<v>getStatus<>() => <v>Status<>;
+}<>
+
+
+Defines the properties and methods (sigatures) of a custom type.
+
+
+
+### Interface - Define
+
+<cb>interface <v>User<> {
+	<v>id<>: number;
+	<v>name<>: string;
+	<v>createId<>() => string;
+	<v>setId<>(<v>id<>?: string) => void;
+}<>
+
+Form:
+
+<cb>interface <v>Name<> {
+	<v>property1<>: <v>type<>;
+	<v>property2<>: <v>type<>;
+	<v>...<>;
+	<v>method1<>: (<v>param<>: <v>type<>) => <v>returnType<>;
+	<v>method2<>: (<v>param<>: <v>type<>) => <v>returnType<>;
+}<>
+@
+@ create, new
+
+
+
+### Interface - Define Method
+
+<cb>interface <v>User<> {
+	<v>setId<>(<v>id<>: string) => void;
+}<>
+
+Form:
+
+<cb>interface <v>Name<> {
+	<v>method1<>: (<v>param<>: <v>type<>) => <v>returnType<>;
+	<v>method2<>: (<v>param<>: <v>type<>) => <v>returnType<>;
+}<>
+@
+@ create, new
+
+
+
+### Interface - Define Property
+
+<cb>interface <v>User<> {
+	<v>name<>: string;
+}<>
+
+Form:
+
+<cb>interface <v>Name<> {
+	<v>property1<>: <v>type<>;
+	<v>property2<>: <v>type<>;
+}<>
+@
+@ create, new
+
+
+
+### Interface - Extend
+
+<cb>interface <v>ActiveUser<> extends <v>User<> {
+	<v>...<>
+}<>
+
+Form:
+
+<cb>interface <v>name<> extends <v>BaseIntefaceName<> {
+	<v>...<>
+}<>
+@
+@ define, create, new
+
+
+
+# Classes
+
+Classes define templates for creating objects.
+@
+@ class-only, classes-only, cls-only
+
+
+## Class - Basics
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	<v>property1<> = <v>value<>;
+
+	constructor(<v>param1<>: <v>type<>) {
+		this.<v>property1<> = <v>param1<>;
+	}
+
+	<v>method1<>(<v>param1<>: <v>type<>, <v>param2<>: <v>type<>): <v>returnType<> {
+		return <v>value<>;
+	}
+
+	<v>method2<>(<v>newValue<>: <v>type<>): void {
+
+		<#>// Access:<>
+
+		this.<v>property1<> = <v>newValue<>;
+		this.<v>method1<>(<v>newValue<>);
+	}
+}<>
+
+Create:
+
+<cb><v>item1<> = new <v>Class1<>(<v>param1<>, <v>param2<>);
+
+<v>item1<>.method1(<v>...<>);
+
+<v>...<> = <v>item1<>.<v>property1<><>
+
+
+Define Private:
+
+<cb>class <v>Class1<> {
+
+	#<v>privateProperty1<>: <v>type<>;
+	#<v>privateProperty2<> = <v>value<>;
+
+	constructor(<v>param1<>: <v>type<>) {
+		this.<v>privateProperty1<> = <v>param1<>;
+	}
+
+	<v>#privatemethod1<>(<v>param1<>: <v>type<>, <v>param2<>: <v>type<>): <v>returnType<> {
+		return <v>value<>;
+	}
+
+	<v>method2<>(<v>newValue<>: <v>type<>): void {
+
+		<#>// Access:<>
+
+		this.#<v>privateProprty1<> = <v>newValue<>;
+		this.#<v>privateMethod1<>();
+	}
+}<>
+
+
+Define Static:
+
+<cb>class <v>Class1<> {
+
+	static <v>staticProperty1<> = <v>value<>;
+
+	static <v>staticMethod1<>(<v>param1<>: <v>type<>): <v>returnType<> {
+		return <v>value<>;
+	}
+
+	static {
+		<#>// Initialization block<>
+	}
+
+	<#>// Accessing:<>
+
+	<v>method2<>(<v>newValue<>: <v>type<>): void {
+
+		<v>Class1<>.<v>staticProperty1<> = <v>newValue<>;
+		<v>Class1<>.<v>staticMethod1<>();
+	}
+}<>
+
+Access:
+
+<cb><v>Class1<>.method1(<v>...<>);
+
+<v>...<> = <v>Class1<>.<v>property1<><>
+
+
+
+## Class - Define
+@
+@ new, create
+
+
+
+### Class - Define
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	<v>property1<> = <v>initialValue<>;
+
+	constructor(<v>param1<>: <v>type<>, <v>param2<>: <v>type<>) {
+
+		this.<v>property1<> = <v>param1<>;
+	}
+
+	<v>method1<>(<v>param1<>: <v>type<>, <v>param2<>: <v>type<>): <v>returnType<> {
+
+		return <v>value<>;
+	}
+
+	<v>method2<>(): void {
+
+		<v>value<> = this.<v>property1<>;
+		this.<v>proprty1<> = <v>new_value<>;
+
+		this.<v>method1<>(<v>...<>);
+	}
+}<>
+
+Instantiate:
+
+<cb>let <v>item1<> = new Class1(<v>param1<>, <v>param2<>);<>
+
+
+
+### Class - Define Constructor
+
+Define
+
+<cb>class <v>Class1<> {
+
+	constructor(<v>param1<>: <v>type<>, <v>param2<>: <v>type<>) {
+
+		<v>...<>
+	}
+}<>
+
+Instantiate:
+
+<cb>let <v>item1<> = new Class1(<v>param1<>, <v>param2<>);<>
+
+
+Defines the constructor for the class.
+@
+@ constructor()
+
+
+
+### Class - Define Method
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	<v>method1<>(<v>param1<>: <v>type<>, <v>param2<>: <v>type<>): <v>type<> {
+
+		return <v>value<>;
+	}
+}<>
+
+Access Within Class:
+
+<cb>= this.<v>method1<>(<v>...<>)<>
+
+Access Outside Class:
+
+<cb>= <v>item1<>.<v>method1<>(<v>...<>);<>
+
+
+Defines a method for the class.
+
+Access the method inside the class with <c>this<>.
+Access outside the method using the instance name.
+@
+@ instance, this.
+
+
+
+### Class - Define Property
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	<v>property1<>: <v>type<>;
+	<v>property2<> = <v>param1<>;
+}<>
+
+Access Within Class:
+
+<cb>= this.<v>property1<>
+
+this.<v>property1<> = <v>...<><>
+
+Access Outside Class:
+
+<cb>= <v>instance1<>.<v>property1<>
+
+<v>instance1<>.<v>property1<> = <v>...<><>
+
+
+Defines a class property.
+
+Define instance properties inside the <c>constructor()<> method.
+@
+@ instance, this.
+
+
+
+### Class - Define Read Only Property
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	readonly <v>property1<> = <v>param1<>;
+}<>
+
+
+Use the <c>readonly<> keyword to make a property read only.
+@
+@ read only, immutable
+
+
+
+### Class - Define Parameter Property
+
+<cb>class <v>Class1<> {
+
+	constructor(private <v>id<>: number, public <v>name<>: string) {}
+}<>
+
+Equivalent To:
+
+<cb>class <v>Class1<> {
+
+	private <v>id<>: number;
+	<v>name<>: string;
+
+	constructor(<v>id<>: number, <v>name<>: string) {
+		this.<v>id<> = <v>id<>;
+		this.<v>name<> = <v>name<>;
+	}
+}<>
+
+
+Parameter properties define properties in the parameters of the <c>constructor()<> method.
+
+Parameter properties require an access modifier or <c>readonly<> (required).
+Define the access modifier by applying <c>public<>, <c>private<>, <c>protected<>.
+@
+@ constructor
+
+
+
+### Class - Define Extend Base Class
+
+<cb>class <v>Subclass1<> extends <v>Baseclass1<> {
+
+	<v>...<>
+}<>
+
+<cb>class <v>Subclass1<> extends <v>Baseclass1<> {
+
+	constructor() {
+		super();
+		<v>...<>
+	}
+}<>
+
+
+Use <c>extends<> to extend a base class.
+
+<v>super()<> is required if there is a constructor.
+@
+@ subclass, superclass, baseclass, extends, super(), parent
+
+
+
+### Class - Implement Interface Implementation
+
+<cb>class <v>Implementation1<> implements <v>Interface1<> {
+
+	<v>...<>
+}<>
+
+
+Use <c>implements<> to implement a class that conforms to an interface.
+
+You must implement all properties along with all methods in the implementation class.
+
+
+
+### Class - Define Abstract Class
+
+<cb>abstract class <v>Class1<> {
+
+	abstract <v>method1<>(): <v>type<>;
+}<>
+
+
+Use the <c>abstract<> keyword to identify a class as abstract.
+Use the <c>abstract<> keyword on abstract methods that need to be implemented in the concrete class.
+
+
+
+## Class - Define Private
+@
+@ new, create, statics
+
+
+### Class - Define Private Method
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	private <v>method1<>(): <v>type<> {
+
+		return <v>value<>;
+	}
+}<>
+
+Access Within Class:
+
+<cb>= this.<v>method1<>(<v>...<>)<>
+
+Access Outside Class:
+
+<cb><#>// Not possible.<><>
+
+
+Defines a private method for the class by using the modifier <c>private<>.
+
+Access the method inside the class by using <c>this<>.
+Not accessible outside the class instance.
+@
+@ \#
+
+
+
+### Class - Define Private Property
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	private <v>property1<>: <v>type<>;
+	private <v>property2<> = <v>initialValue<>;
+}<>
+
+Access Within Class:
+
+<cb>= this.<v>property1<>
+
+this.<v>property1<> = <v>...<><>
+
+Access Outside Class:
+
+<cb><#>// Not possible.<><>
+
+
+Define a private property by using the modifier <c>private<>.
+
+Access the property within the class by using <c>this<>.
+Not accessible outside the class instance.
+@
+@ \#
+
+
+
+## Class - Define Static
+@
+@ new, create, statics
+
+
+### Class - Define Static Method
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	static <v>method1<>(): <v>type<> {
+
+		return <v>value<>;
+	}
+}<>
+
+Access:
+
+<cb>= <v>Class1<>.method1(<v>param1<>, <v>param2<>);<>
+
+
+Defines a static method for the class.
+
+Use the <c>static<> modifier keyword to define a static method.
+Access the method using the class name (never with <c>this<> or the instance name.
+
+
+
+### Class - Define Static Property
+
+Define:
+
+<cb>class <v>Class1<> {
+
+	static <v>property1<>: <v>type<>;
+	static <v>property1<> = <v>initialValue<>;
+}<>
+
+Access:
+
+<cb>= <v>Class1<>.<v>property1<><>
+
+
+Defines a static property.
+
+Access the property using the class name (never with <c>this<> or the instance name.
+
+
+
+### Class - Define Static Initialization Block
+
+<cb>class <v>Class1<> {
+
+	static {
+		<#>// Place static initialization code here.<>
+	}
+}<>
+
+
+
+## Class - Define Accessor Methods
+@
+@ accessors
+
+
+### Class - Define Getter Method
+
+<cb>get <v>property1<>(): <v>type<> {
+		return <v>value<>;
+}<>
+
+Usage:
+
+<cb>class <v>Class1<> {
+
+	get <v>property1<>(): <v>type<> {
+		return <v>value<>;
+	}
+}<>
+
+<cb><v>item1<> = new Class1();
+
+<v>value<> = <v>item1<>.<v>property1<>;<>
+
+
+Defines a class method as a getter property.
+@
+@ get, property
+
+
+
+### Class - Define Setter Method
+
+<cb>set <v>property1<>(<v>value<>: <v>type<>) {
+		<v>...<>
+}<>
+
+Usage:
+
+<cb>class <v>Class1<> {
+
+	set <v>property1<>(<v>value<>: <v>type<>) {
+		<v>...<>
+	}
+}<>
+
+<cb><v>item1<> = new Class1();
+
+<v>item1<>.<v>property1<> = <v>value<>;<>
+
+
+Defines a class method as a setter property.
+@
+@ set
+
+
+
+## Class - Properties
+
+
+
+### Class - Name
+
+<cb>= <v>instance1<>.constructor.name<>
+
+Beware when using minified code. The class name will likely be different.
+
+
+
+### Class - This
+
+<cb>= this<>
+
+<cb>return this<>
+
+
+Use this to reference the class instance.
+@
+@ instance, self
+
+
+
+# Modules
+@
+@ mod-only, mods-only, module-only, modules-only
+
+
+### Export - Export Definition
+
+<cb>export interface <v>Interface1<> {
+	<v>...<>
+}<>
+
+<cb>export class <v>Class1<> {
+	<v>...<>
+}<>
+
+<cb>export function <v>function1<>(): void {
+	<v>...<>
+}<>
+
+Add the word <c>export<> to an inteface, class or function allows those items to be used by other modules.
+If they are not exported, they are considered private to the module.
+
+
+
+### Export - Export Statement
+
+<cb>export {<v>Interface1<>, <v>Class2<>, <v>Function3<>};<>
+@
+@ {}
+
+
+
+### Export - Export Statement With Rename
+
+<cb>export {<v>Item1<> as <v>NewName<>}<>
+
+<cb>export {<v>Interface1<> as <v>NewInterfaceName<>, <v>Class2<> as <c>NewClassName<>, <v>Function3<> as <c>NewFunctionName<>};<>
+@
+@ {}
+
+
+
+### Export - Default Export
+
+Use Keyword <c>default<>
+
+<cb>export default class <v>Class1<> {
+	<v>...<>
+}<>
+
+Identifies the default item to be exported from a module.
+
+Used when a module is imported elsewhere but no specific item was imported from that module.
+The default item gets imported in this case.
+
+
+
+### Export - Private Module Items
+
+Anything that is not explitily exported is private to the module only.
+
+Private Class:
+
+<cb>class <v>PrivateClass1<> {
+	<v>...<>
+}<>
+
+Exported Class:
+
+<cb>export class <v>PublicClass1<> {
+	<v>...<>
+}<>
+
+
+
+### Import - Explicit Import
+
+<cb>import {<v>Item1<>, <v>Item2<>, <v>...<>} from '<v>path<>/<v>module1<>'<>
+
+Imports the listed items from the module.
+
+Does not require the extension '.ts'.
+
+
+Example:
+
+<cb>import {User, Users} from './user'<>
+@
+@ from, imported, explicitly importing
+
+
+
+### Import - Explicit Import - Type Only
+
+<cb>import type {<v>Item1<>, <v>Item2<>, <v>...<>} from '<v>path<>/<v>module1<>'<>
+
+Imports the listed items from the module but only as types.
+
+
+Example:
+
+<cb>import type {Event} from './framework/api/event'<>
+@
+@ from, imported, explicitly importing, type
+
+
+
+### Import - Explicit Import - With Aliasing
+
+<cb>import {<v>Item1<> as <v>Alias1<>, <v>Item2<> as <v>Alias2<>, <v>...<>} from '<v>path<>/<v>module1<>'<>
+@
+@ from, imported, explicitly importing, new name, renamed
+
+
+
+### Import - Import Default
+
+<cb>import '<v>path<>/<v>module1<>'<>
+
+
+
+### Import - Import Default, Renamed
+
+<cb>import <v>RenamedDefault<> from '<v>path<>/<v>module1<>'<>
+@
+@ from, imported, importing, new name, renamed, aliased
+
+
+
+### Import - Import All Items
+
+<cb>import * as <v>Prefix<> from '<v>path<>/<v>module1<>'<>
+
+Usage:
+
+<cb>import * as <v>Prefix<> from '<v>path<>/<v>module1<>'
+
+<v>Prefix<>.<v>function1<>();<>
+
+
+Imports all exported items from the module.
+
+Requires a prefix to be given in the import statement.
+Requires the prefix be used when referencing items from the module.
+
+
+
+### Module Imports - Relative Import Paths
+
+Relative To Root:
+
+<cb>/<v>rootModule<>
+/<v>directory<>/<v>module<><>
+
+From Module Directory:
+
+<cb>./siblingModule<>
+
+
+Use for your own code.
+
+
+
+### Module Imports - Non-relative Import Paths
+
+<cb> import {<v>...<>} from '<v>moduleName<>'<>
+
+Use for importing 3rd party modules.
+
+Note: There is no path in the module name.
+
+
+
+### Module Imports - Module Resolution Strategy
+
+Commandline:
+
+<cb>tsc --moduleResolution Classic<>
+
+<cb>tsc --moduleResolution Node<>
+
+Classic:
+
+<in-2>Target:
+
+<*>AMD
+UMD
+System
+ES2015<>
+
+Simple
+Less Configuration<>
+
+Node:
+
+<in-2>Target:
+
+<*>CommonJS<>
+
+Mirrors Node Module Resolution
+More Configuration<>
+@
+@ tsc, --moduleresolution, classic, node
+
+
+
+### TypeScript Module Resolution - Classic Relative
+
+Import:
+
+<cb>import { User } from './person'<>
+
+Search Path
+
+<cb>Current Directory/
+├─ person.ts
+└─ person.d.ts<>
+
+
+
+### TypeScript Module Resolution - Classic Non-Relative
+
+Import:
+
+<cb>import { User } from 'person'<>
+
+Search Path
+
+<cb>Current Directory/
+├─ person.ts
+└─ person.d.ts
+../
+├─ person.ts
+└─ person.d.ts
+../../
+├─ person.ts
+└─ person.d.ts
+...<>
+
+
+
+### TypeScript Module Resolution - Node Relative
+
+Import:
+
+<cb>import { User } from './person'<>
+
+Search Path
+
+<cb>Current Directory/
+├─ person.ts
+├─ person.tsx
+├─ person.d.ts
+└─ person/
+   ├─ package.json (with "types" property)
+   ├─ index.ts
+   ├─ index.tsx
+   └─ index.d.ts<>
+@
+@ .ts, .tsx, .d.ts, index.ts, index.tsx, index.d.ts
+
+
+### TypeScript Module Resolution - Node Non-Relative
+
+Import:
+
+<cb>import { User } from 'person'<>
+
+Search Path:
+
+<cb>Current Directory/
+├─ node_modules
+│  ├─ person.ts
+│  ├─ person.tsx
+│  ├─ person.d.ts
+│  └─ person/
+│     └─ package.json (with "types" property)
+├─ \@types
+│     └─ person.d.ts
+└─ node_modules
+      ├─ index.ts
+      ├─ index.tsx
+      └─ index.d.ts<>
+
+<cb>../
+├─ node_modules
+│  ├─ person.ts
+│  ├─ person.tsx
+│  ├─ person.d.ts
+│  └─ person/
+│     └─ package.json (with "types" property)
+├─ \@types
+│     └─ person.d.ts
+└─ node_modules
+      ├─ index.ts
+      ├─ index.tsx
+      └─ index.d.ts<>
+
+<cb>../../
+├─ node_modules
+│  ├─ person.ts
+│  ├─ person.tsx
+│  ├─ person.d.ts
+│  └─ person/
+│     └─ package.json (with "types" property)
+├─ \@types
+│     └─ person.d.ts
+└─ node_modules
+      ├─ index.ts
+      ├─ index.tsx
+      └─ index.d.ts<>
+
+...
+@
+@ .ts, .tsx, .d.ts, index.ts, index.tsx, index.d.ts
+@ \@types
+
+
+
+# Compiler Directives
+@
+@ preprocessor, pre-processor, ///, triple-lsash
+
+
+### Triple-Slash Directive
+
+Use Triple Slash to give the compiler directives.
+
+<cb><#>///<> \<<v>compiler_command<> /><>
+
+Commands are usually in <c>XML<> form.
+
+
+
+### Directive - Include Module Directive
+
+<cb><#>///<> \<reference path="<v>include_file.ts<>" /><>
+
+Tells the compiler to include the include module when compiling the current module.
+@
+@ file, import
+
+
+
+# Compiler Targets
+@
+@ reference
+
+Prefer ESM.
+
+
+### Compile Target - Asynchronous Module Definition (AMD)
+Used by frontends.
+Loads modules asynchronously.
+
+
+
+### Compile Target - CommonJS (CJS)
+Used by backends running on Node.
+
+
+
+### Compiler Target - ECMAScript Module (ESM)
+Standard JavaScript standard.
+loads modules asynchronously.
+
+
+
+### Compiler Target - Universal Module Definition (UMD)
+Works on frontend and backend
+
+
+
+# Online References
+
+
+### Definitely Typed / Github
+
+<l>https://github.com/DefinitelyTyped/DefinitelyTyped<>
+
+Find type declaration files for many popular libraries.
+@
+@ definitely typed
+
+
+# How To
+@
+@ how-to-only
+
+
+
+# Reference - Event Types
+
+
+### Keyboard Event Type
+
+<cb>KeyboardEvent<>
+
+
+# Symbols
+
+
+### Symbol - this
+
+Used in objects to refer to the enclosing context.
+
+<cb>this<>
+
+
+<cb>this.<v>method_1<>();
+= this.<v>property_2<><>
+
+
+
+# Acronyms
+@
+@ acronym-only, acronyms-only
+
+
+### TSC
+TypeScript Compile
+
+
+
+# Terms
+@
+@ term-only, terms-only
+
+
+
+### Access Modifier
+public, private, protected
+Default is public.
+
+
+
+### Arrow Function
+Function in the form of '(params) => code'. Called lambda function in other languages.
+
+
+
+### File - package.json
+A Node.JS project configuration file.
+
+
+
+### File - tsconfig.json
+A TypeScript project or directory configuration file.
+
+
+
+### File Extension .js
+A JavaScript file.
+@
+@ file, JavaScript
+
+
+
+### File Extension .ts
+A TypeScript file
+@
+@ file, TypeScript
+
+
+
+### File Extension .d.ts
+A TypeScript Declaration File
+
+
+
+### Transpile
+Compiling from one language to another language. TypeScript is transpiled into JavaScript.
+
+
+
+### Type Assertion
+Type assertion tells the editor what type you expect the variable to be. This is so you can access the Intellisense and compile time checking features. This is similar to casting but the object is not actually changed to anything because JavaScript.
+
+
+
+### Type Declaration Files
+
+Defines the variables, functions, classes etc. in a TypeScript library.
+
+Used by the compiler to validate code.
+
+File Extension: .d.ts
+
+Also Called: Type Definition Files
+Also Called: Type Libraries
+@
+@ definition, library
+
+
+
+### TypeScript
+A superset of JavaScript. but has strong static typing and object-oriented features (classes, interfaces, etc). It also supports compile-time error checking.
+Note: Any valid JavaScript is also valid TypeScript
+
+
+
