@@ -39,14 +39,37 @@ Use to find type declaration files for many TypeScript libraries.
 
 # Commands
 @
-@ command-only, commands-noly, cli, cli-only
+@ command-only, commands-noly, cli, cli-only, comm-only
 
 
 
 ## TypeScript Commands
 
 
-### TypeScript - Install - With NPM
+### TypeScript - Install - Using NPM
+
+Command:
+
+<cb>npm install typescript --save-dev<>
+
+package.json:
+
+<cb>{
+	"scripts": {
+		"build": "tsc"
+	}
+}<>
+
+
+
+Requires Node.js and npm.
+@
+@ nodejs, node.js
+@ install-only, installing-only
+
+
+
+### TypeScript - Install - GloballyUsing NPM
 
 <cb>npm --location=global install typescript<>
 
@@ -56,6 +79,17 @@ Requires Node.js and npm.
 @
 @ nodejs, node.js
 @ install-only, installing-only
+
+
+
+### TypeScript - Install - Type Declarations
+
+<cb>npm i -D @types/node<>
+
+@
+@ nodejs, node.js
+@ install-only, installing-only
+
 
 
 ### TypeScript - TypeScript Version
@@ -103,7 +137,7 @@ Creates tsconfig.js file.
 
 Creates a default tsconfig.js file.
 @
-@ tsconfig.js
+@ tsconfig.js, --init, initialize, new
 
 
 
@@ -138,7 +172,19 @@ Compiles the file to javascript.
 
 <cb>node <v>file_name<>.js<>
 
-Runs the compiled javascript file.
+Runs the <b>compiled<> javascript file.
+@
+@ node
+
+
+
+### File - Compile and Run
+
+Use npx + ts-node:
+
+<cb>npx ts-node <v>file_name<>.ts<>
+
+Compiles and runs the typescript file.
 @
 @ node
 
@@ -352,7 +398,7 @@ It does not need to be instantiated from a class implementing <c>Employee<>.
 
 # Configuration
 @
-@ tsconfig.json
+@ tsconfig.json, config-only, configuration-only, settings
 
 
 ## Configuration File
@@ -578,7 +624,7 @@ Example:
 	}
 }<>
 @
-@ compileoptions, baseurl
+@ compileoptions, baseurl, root folder
 
 
 
@@ -1284,6 +1330,7 @@ Type:
 Must end in <c>n<>.
 @
 @ bigint-only, bigint-only, big-int-only, big-int-only
+@ integer
 
 
 
@@ -1319,15 +1366,26 @@ Type:
 
 
 # Array
-
-<cb>let <v>array1<>: <v>type<>[];<>
-
-<cb>let <v>array1<>: <v>Array<>\<<v>type<>>;<>
-
-<cb>let <v>array1<>: <v>type<>[] = [<v>value1<>, <v>value2<>, <v>...<>];<>
 @
 @ arrays, lists, []
 @ array-only, arrays-only
+
+
+### Array - Define
+
+<cb>let <v>array1<>: <v>type<>[];<>
+
+<cb>let <v>array1<>: [<v>type<>, <v>type<>, <v>type<>];<>
+
+<cb>let <v>array1<>: <v>Array<>\<<v>type<>>;<>
+@
+@ create
+
+
+
+### Array - Create
+
+<cb>let <v>array1<>: <v>type<>[] = [<v>value1<>, <v>value2<>, <v>...<>];<>
 
 
 
@@ -1914,7 +1972,9 @@ Use the <c>readonly<> keyword to make a property read only.
 
 
 
-### Class - Define Parameter Property
+### Class - Define With Constructor Fields
+
+(<m>Investigate. Not working.<>)
 
 <cb>class <v>Class1<> {
 
@@ -1939,8 +1999,10 @@ Parameter properties define properties in the parameters of the <c>constructor()
 
 Parameter properties require an access modifier or <c>readonly<> (required).
 Define the access modifier by applying <c>public<>, <c>private<>, <c>protected<>.
+
+<b>Note:<> Must declare access modifiers!
 @
-@ constructor
+@ constructor, properties
 
 
 
